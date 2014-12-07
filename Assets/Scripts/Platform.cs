@@ -12,4 +12,10 @@ public class Platform : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	void OnTriggerEnter2D( Collider2D col ) {
+		if (col.transform.tag == "DestroyZone") {
+			
+		}
+	}
 }

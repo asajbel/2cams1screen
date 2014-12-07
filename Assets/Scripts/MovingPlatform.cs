@@ -3,11 +3,12 @@ using System.Collections;
 
 public class MovingPlatform : MonoBehaviour {
 
-	public float speed = 3f; 
+	public float speed = 1f; 
 
 	private Vector2 boundry; 
 	private float m = 1f; 
 	private Transform player = null; 
+	private Vector3 trans;
 
 	// Use this for initialization
 	void Start () {
@@ -23,24 +24,23 @@ public class MovingPlatform : MonoBehaviour {
 	void FixedUpdate () {
 		if (transform.position.x > boundry.y ||
 		    transform.position.x < boundry.x) {
-			m *= -1f;
+			m *= -1f; 
 			rigidbody2D.velocity = new Vector2(speed * m, 0); 
-			if (player != null) {
-				player.rigidbody2D.velocity = rigidbody2D.velocity;
-			}
+//			rigidbody2D.AddForce(new Vector2 ((speed * -m)/ 10, 0)); 
 		}
 	}
 
-	void onCollisionEnter2D(Collision2D	col) {
-		if ( col.transform.tag == "Eball") {
-			player = col.transform; 
-			player.rigidbody2D.velocity = rigidbody2D.velocity;
-		}
-	}
-	
-	void onCollisionExit2D(Collision2D col) {
-		if ( col.transform.tag == "Eball") {
-			player = null; 
-        }
-    }
+//	void Update () {
+//		transform.Translate(trans); 
+//		if (transform.position.x > boundry.y ||
+//		    transform.position.x < boundry.x) {
+//			m *= -1f;
+//			trans.y = m * speed; 
+//			
+//		}
+//	}
+
+//	IEnumerator ChangeDirection() {
+//		for (float i = this.rigidbody2D.velocity.x; i < this.rigidbody2D.velocity.x
+//	}
 }
